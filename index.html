@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Cesium.js"></script>
+    <link
+      href="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Widgets/widgets.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="cesiumContainer"></div>
+
+    <div class="backdrop" id="menu">
+      <canvas id="canvas1" width="10px" height="3 px" align="center"></canvas>
+      <h1>
+        3D Visualization of Flood in River Karamana: <br />Case of Trivandrum
+      </h1>
+
+      <h3>Select Water Flow (Cumec)</h3>
+      <button id="button1" onclick="flood26()" class="button6">25 cumec</button>
+      <button id="button2" onclick="flood50()" class="button7">50 cumec</button>
+      <button id="button3" onclick="flood100()" class="button8">
+        100 cumec
+      </button>
+
+      <canvas id="canvas2" width="10px" height="3 px" align="center"></canvas>
+      <h3>Highlight Building Type</h3>
+      <button id="first" onclick="single_storey()" class="button1">
+        Single storey
+      </button>
+      <button id="second" onclick="two_storey()" class="button2">
+        Two storey
+      </button>
+      <button id="third" onclick="three_storey()" class="button3">
+        Three Storey
+      </button>
+      <button id="fourth" onclick="high_rise()" class="button4">
+        High Rise
+      </button>
+      <button id="fifth" onclick="all_buildings()" class="button5">
+        All Buildings
+      </button>
+
+      <canvas id="canvas3" width="5px" height="1 px" align="center"></canvas>
+      <h3>Highlight Ward</h3>
+      <button id="one" onclick="one()" class="button9">Thiruvallam</button>
+      <button id="two" onclick="two()" class="button10">Ambalathara</button>
+      <button id="three" onclick="three()" class="button11">Punjakkari</button>
+      <button id="four" onclick="four()" class="button12">Attukal</button>
+
+      <button id="six" onclick="six()" class="button14">Kalady</button><br />
+      <button id="seven" onclick="seven()" class="button15">
+        Kalippankulam
+      </button>
+      <button id="eight" onclick="eight()" class="button16">Kuriathy</button>
+      <button id="nine" onclick="nine()" class="button17">Melamcode</button>
+      <button id="ten" onclick="ten()" class="button18">Nedumcaud</button>
+      <button id="eleven" onclick="eleven()" class="button19">
+        Pappanamcode
+      </button>
+      
+      
+        <canvas id="canvas4" width="5px" height="1 px" align="center"></canvas>
+      <h3>Export the scene</h3>
+      <input type="button" value="print the scenario" onClick="window.print()">
+    </div>
+    
+
+     
+   
+
+    
+    
+    
+    
+    
+    
+    <script>
+      Cesium.Ion.defaultAccessToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkYWMxMTQ2YS01YTBhLTQ5NmQtOWJiNy1mYTA2ODBjOTBlMzIiLCJpZCI6ODE2NTYsImlhdCI6MTY0NjI4MjU4Mn0.yWeJ6IgFRsSBur-0DSZL6914Frj9nVCMqF6RlIT0QoM";
+
+      const viewer = new Cesium.Viewer("cesiumContainer", {
+        terrainProvider: Cesium.createWorldTerrain(),
+      });
+
+      const buildingsTileset = viewer.scene.primitives.add(
+        new Cesium.Cesium3DTileset({
+          url: Cesium.IonResource.fromAssetId(966076),
+        })
+      );
+
+      viewer.zoomTo(buildingsTileset);
+
+      var scene = viewer.scene;
+      scene.light.intensity = 7;
+
+      // Function for Highlighting Ward wise buildings
+
+      function one() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Thiruvallam' ",
+                "color('#ff9999', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function two() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Ambalathara' ",
+                "color('#ffcc99', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function three() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Punjakkari' ",
+                "color('#ffff99', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function four() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Attukal' ",
+                "color('#ccff99', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function five() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Estate' ",
+                "color('#99ff99', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function six() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Kalady' ",
+                "color('#99ffcc', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function seven() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Kalippankulam' ",
+                "color('#99ffff', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function eight() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Kuriathy' ",
+                "color('#99ccff', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function nine() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Melamcode' ",
+                "color('#9999ff', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function ten() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Nedumcaud' ",
+                "color('#cc99ff', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function eleven() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Ward_Name']} === 'Pappanamcode' ",
+                "color('#ff99ff', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      // Function for highlighting building type
+      function single_storey() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Building_Type']} === 'Single Storey' ",
+                "color('cyan', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function two_storey() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Building_Type']} === 'Two storey' ",
+                "color('yellow', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function three_storey() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Building_Type']} === 'Three storey' ",
+                "color('green', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function high_rise() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Building_Type']} === 'High Rise' ",
+                "color('red', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      function all_buildings() {
+        buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+          color: {
+            conditions: [
+              [
+                "${feature['Building_Type']} === 'High Rise' ",
+                "color('red', 0.9)",
+              ],
+              [
+                "${feature['Building_Type']} === 'Three storey' ",
+                "color('green', 0.9)",
+              ],
+              [
+                "${feature['Building_Type']} === 'Two storey' ",
+                "color('yellow', 0.9)",
+              ],
+              [
+                "${feature['Building_Type']} === 'Single Storey' ",
+                "color('cyan', 0.9)",
+              ],
+
+              [true, "color('white')"],
+            ],
+          },
+        });
+      }
+
+      // Function for dispalying flood imagery
+      function flood26() {
+        const imageryLayer = viewer.imageryLayers.addImageryProvider(
+          new Cesium.IonImageryProvider({ assetId: 958868 })
+        );
+      }
+
+      function flood50() {
+        viewer.imageryLayers.addImageryProvider(
+          new Cesium.IonImageryProvider({ assetId: 969391 })
+        );
+      }
+
+      function flood100() {
+        viewer.imageryLayers.addImageryProvider(
+          new Cesium.IonImageryProvider({ assetId: 969394 })
+        );
+      }
+
+      Cesium.IonResource.clampToGround = true;
+
+      ////////////////////////////////////////////////////////////////////
+    </script>
+  </body>
+</html>

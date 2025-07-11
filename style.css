@@ -1,0 +1,80 @@
+html,
+body {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+#cesiumContainer {
+  height: 100%;
+}
+
+.backdrop {
+    display: inline-block;
+    background: rgba(42, 42, 42, 0.7);
+    border-radius: 5px;
+    border: 1px solid #444;
+    padding: 5px 10px;
+    color: #fff;
+    line-height: 150%;
+    font-size: small;
+}
+#menu {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.button1 {background-color: cyan;} /* Blue */
+.button2 {background-color: yellow;color: black;} /* Blue */
+.button3 {background-color: lightgreen; } /* Red */ 
+.button4 {background-color: red; color: black;} /* Gray */ 
+.button5 {background-color: lightgrey;} /* Black */
+
+.button6 {background-color:  #B2FFFF;} /* Blue */
+.button7 {background-color: #89CFF0;} /* Blue */
+.button8 {background-color: #6CA0DC; } /* Red */ 
+.button9 {background-color: #004F98; color: white;} /* Gray */ 
+
+
+.button9 {background-color: #ff9999; color: black;} 
+.button10 {background-color: #ffcc99; color: black;} 
+.button11 {background-color: #ffff99; color: black;} 
+.button12 {background-color: #ccff99; color: black;} 
+.button13 {background-color: #99ff99; color: black;} 
+.button14 {background-color: #99ffcc; color: black;} 
+.button15 {background-color: #99ffff; color: black;} 
+.button16 {background-color: #99ccff; color: black;} 
+.button17 {background-color: #9999ff; color: black;} 
+.button18 {background-color: #cc99ff; color: black;} 
+.button19 {background-color: #ff99ff; color: black;} 
+
+
+
+
+
+
+
+
+.header {
+  padding: 6px;
+  text-align: right;
+  background: #1abc9c;
+  color: white;
+  font-size: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
